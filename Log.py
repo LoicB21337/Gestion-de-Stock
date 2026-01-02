@@ -1,4 +1,3 @@
-import Stockage
 from File import *
 from Produit import *
 
@@ -10,11 +9,10 @@ class Log:
     maximale du journal.
     """
 
-    def __init__(self, size: int, stock: Stockage):
+    def __init__(self, size: int):
         """Initialiser le journal avec une taille maximale et la référence
         vers le stockage associé.
         """
-        self.stock = stock
         self.log = File()
         self.LOG_SIZE = size
 

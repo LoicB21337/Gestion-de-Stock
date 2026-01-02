@@ -12,7 +12,7 @@ class Stockage:
     def __init__(self, seuil: int):
         """Initialiser le stockage avec un seuil de réapprovisionnement."""
         self.SEUIL_STOCK = seuil
-        self.journal = Log(3, self)
+        self.journal = Log(3)
         self.stock: list[FileProduits] = []
 
     def ajouterProduit(self, produit: Produit):
