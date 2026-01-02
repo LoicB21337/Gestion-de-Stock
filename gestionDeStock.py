@@ -48,7 +48,20 @@ class GestionDeStock:
         for typeProduit, volume in self.separerProduitEtVolume(entree):
             produits = Produit(typeProduit, volume)
             self.stock.ajouterProduit(produits)
-
+    
+    def find_combination(self, remaining, max_v, typeProduit):
+        if remaining == 0:
+            return []
+        if max_v == 0:
+            return None
+        for v in range(min(max_v, remaining), 0, -1):
+            prod = self.stock.retirerProduit(typeProduit + str(v))
+            rest = self.find_combination(remaining - v, v, typeProduit)
+            if rest is not None:
+                return [prod] + rest
+            self.stock.ajouterProduit(prod)
+        return None
+    
     def commander(self):
         """Traiter une commande saisie par l'utilisateur.
 
@@ -68,22 +81,7 @@ class GestionDeStock:
             id_str = typeProduit + str(volume)
             commande: Produit = self.stock.retirerProduit(id_str)
             if commande is None:
-                def find_combination(remaining, max_v):
-                    if remaining == 0:
-                        return []
-                    if max_v == 0:
-                        return None
-                    for v in range(min(max_v, remaining), 0, -1):
-                        prod = self.stock.retirerProduit(typeProduit + str(v))
-                        if prod is None:
-                            continue
-                        rest = find_combination(remaining - v, v)
-                        if rest is not None:
-                            return [prod] + rest
-                        self.stock.ajouterProduit(prod)
-                    return None
-
-                substitution = find_combination(volume, volume - 1)
+                substitution = self.find_combination(volume, volume - 1, typeProduit)
                 if substitution is None:
                     print("Produit " + id_str + " indisponible")
                 else:

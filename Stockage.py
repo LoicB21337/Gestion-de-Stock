@@ -18,9 +18,9 @@ class Stockage:
     def ajouterProduit(self, produit: Produit):
         """Ajouter un produit au stockage, en créant une file si nécessaire."""
         for elt in self.stock:
-            if elt.id == produit.id():
+            if elt.getId() == produit.id():
                 elt.enfiler(produit)
-                return None
+                return None 
         file = FileProduits(produit.id())
         file.enfiler(produit)
         self.stock.append(file)
@@ -28,25 +28,25 @@ class Stockage:
     def retirerProduit(self, idProduit: str) -> Produit:
         """Retirer et retourner un produit correspondant à `idProduit`, ou None."""
         for elt in self.stock:
-            if elt.id == idProduit:
+            if elt.getId() == idProduit:
                 if elt.size() == 0:
                     return None
                 if elt.size() - 1 == 0:
-                    self.journal.ajoutLog("Produit " + elt.id + " en rupture de stock")
+                    self.journal.ajoutLog("Produit " + elt.getId() + " en rupture de stock")
                     self.journal.gererLog()
                 elif elt.size() - 1 < self.SEUIL_STOCK:
-                    self.journal.ajoutLog("Produit " + elt.id + " en faible quantité")
+                    self.journal.ajoutLog("Produit " + elt.getId() + " en faible quantité")
                 return elt.defiler()
 
     def isProduitEmpty(self, idProduit: str) -> bool:
         """Retourner True si l'identifiant n'existe pas ou si la file est vide."""
         eltExistant: list[str] = []
         for elt in self.stock:
-            if elt.id == idProduit and elt.isEmpty():
+            if elt.getId() == idProduit and elt.isEmpty():
                 return True
-            elif elt.id == idProduit and not elt.isEmpty():
+            elif elt.getId() == idProduit and not elt.isEmpty():
                 return False
-            eltExistant.append(elt.id)
+            eltExistant.append(elt.getId())
         if idProduit in eltExistant:
             return False
         else:

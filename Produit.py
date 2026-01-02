@@ -21,3 +21,11 @@ class Produit:
     def getVolume(self):
         """Retourner le volume (entier) du produit."""
         return self.volume
+
+    def setTypeProduit(self, new_type: str):
+        """Modifier le type (lettre) du produit."""
+        self.typeProduit = new_type
+
+    def setVolume(self, new_volume: int):
+        """Modifier le volume (entier) du produit."""
+        self.volume = new_volume
