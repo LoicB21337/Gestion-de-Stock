@@ -42,9 +42,5 @@ class Log:
         self.log.vider()
 
     def gererLog(self):
-        """Gérer le journal lorsque sa capacité est atteinte.
-
-        Implémentation laissée vide pour préserver le comportement
-        original ; peut être étendue plus tard.
-        """
-        pass
+        """Gérer le journal lorsque sa capacité est atteinte."""
+        self.viderLog()
