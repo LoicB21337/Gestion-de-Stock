@@ -1,5 +1,5 @@
-from File import *
-from Produit import *
+from File import File
+from Produit import Produit
 
 
 class Log:

@@ -1,5 +1,5 @@
-from Stockage import *
-from Produit import *
+from Stockage import Stockage
+from Produit import Produit
 from Pile import Pile
 
 SEUIL_STOCK = 3

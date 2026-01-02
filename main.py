@@ -3,7 +3,7 @@
 Le stock initial ci-dessous contient plusieurs produits de test.
 """
 
-from gestionDeStock import *
+from GestionDeStock import GestionDeStock
 
 magasin = GestionDeStock(
     "A1, A1, A1, A1, A1, A1, A2, A2, A2, A2,"

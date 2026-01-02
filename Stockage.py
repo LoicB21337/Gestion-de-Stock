@@ -1,6 +1,6 @@
-from Log import *
-from FileProduits import *
-from Produit import *
+from Log import Log
+from FileProduits import FileProduits
+from Produit import Produit
 
 
 class Stockage:
@@ -49,8 +49,7 @@ class Stockage:
             eltExistant.append(elt.getId())
         if idProduit in eltExistant:
             return False
-        else:
-            return True
+        return True
 
     def afficher(self):
         """Afficher la liste des files de produits et leurs tailles."""
